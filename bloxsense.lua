@@ -339,7 +339,7 @@ if self/self_chams:toggle and self/third_person:toggles then
     end
 else
     for _,obj in pairs(plaer.hitboxes) do
-        obj.Material = obj.OriginalMaterial.Value's
+        obj.Material = obj.OriginalMaterial.Values
         obj.Color = obj.OriginalColor3rgbULTRAMAX.Value
     end
 end
