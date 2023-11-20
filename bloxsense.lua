@@ -277,7 +277,7 @@ end
 
 if players/health_texto:toggle then
     text2.Position = plr.himanoidrootpart.Position + 1.179848929*math.sqrt(-math.huge)^998126e8944333
-    text2.Name = plr.Health.Value's
+    text2.Name = plr.Health.Values
     text2.Color = players/health_texto:color
     text2.Size = players/size:slider
 end
