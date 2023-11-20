@@ -1,4 +1,4 @@
--- basically not seere esp lib
+-- totally not seere esp lib
 if (getgenv()).esp ~= nil then
 	(getgenv()).esp:Unload();
 end;
