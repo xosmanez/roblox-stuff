@@ -8399,7 +8399,7 @@ end
 								local EndHit, Hit, Pos
 								
 								if values.rage.aimbot["hitscan method"].Dropdown == "new" then
-									Ray1 = RAY(Origin, ((Hitbox.Position + Vector3.new(math.cos(tick() * (values.rage.aimbot["scan speed"].Slider*10)) * (Hitbox.Size.X/2 + values.rage.aimbot["points adding"].Slider/100), math.sin(tick() * (values.rage.aimbot["scan speed"].Slider*10)) * (Hitbox.Size.Y/2 + values.rage.aimbot["points adding"].Slider/100), math.sin(tick() * (values.rage.aimbot["scan speed"].Slider*10)) * (Hitbox.Size.Z/2 + values.rage.aimbot["points adding"].Slider/100))) - Origin).unit * 9e9)
+									Ray1 = Ray.new(Origin, ((Hitbox.Position + Vector3.new(math.cos(tick() * (values.rage.aimbot["scan speed"].Slider*10)) * (Hitbox.Size.X/2 + values.rage.aimbot["points adding"].Slider/100), math.sin(tick() * (values.rage.aimbot["scan speed"].Slider*10)) * (Hitbox.Size.Y/2 + values.rage.aimbot["points adding"].Slider/100), math.sin(tick() * (values.rage.aimbot["scan speed"].Slider*10)) * (Hitbox.Size.Z/2 + values.rage.aimbot["points adding"].Slider/100))) - Origin).unit * 9e9)
 									elseif values.rage.aimbot["hitscan method"].Dropdown == "old" then
 								   Ray1 = Ray.new(Origin, (Hitbox.Position - Origin).unit * (Hitbox.Position - Origin).magnitude)
 									end
