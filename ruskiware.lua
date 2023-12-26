@@ -1,7 +1,7 @@
 local loaded = tick()
 getgenv().values = {}
 local library = {}
-local Signal = loadstring(game:HttpGet("https://paste.gg/p/russianvarya/330890e992e44035a663ff4ce2927b5a/files/0481d8f7061045b8a8d2cb2fa22c9141/raw"))() 
+local Signal = loadstring(game:HttpGet("https://raw.githubusercontent.com/Quenty/NevermoreEngine/version2/Modules/Shared/Events/Signal.lua"))() 
 local ConfigSave = Signal.new("ConfigSave")
 local ConfigLoad = Signal.new("ConfigLoad")
 
@@ -25,9 +25,6 @@ local loopkillplr = {}
 for _,v in pairs(game.Players:GetPlayers()) do 
 	table.insert(loopkillplr, v.Name)
 end
-
-
-
 -- are u pasting my paste??
 function tbltorgb(tbl)
 	return Color3.new(tbl.R, tbl.G, tbl.B)
@@ -42,6 +39,7 @@ local function deepCopy(original)
 	end
 	return copy
 end
+			
 
 local MX_ONHIT = Instance.new("ScreenGui")
 do
@@ -167,7 +165,6 @@ function library:SaveConfig(cfg)
 		end
 	end
 	writefile(cfglocation..cfg..".amogus", game:GetService("HttpService"):JSONEncode(copy))
-	CreateHitElement(" Saved (".. cfg ..") config  ",Color3.new(1,1,1), 3, 0, 280, 0, 22)
 end
 
 function library:New(name)
@@ -2156,7 +2153,7 @@ function library:New(name)
 			Inner.Size = UDim2.new(1, -2, 1, -2)
 
 			local UIPadding = Instance.new("UIPadding")
--- what are u doing here
+
 			UIPadding.Parent = Inner
 			UIPadding.PaddingTop = UDim.new(0, 10)
 
@@ -4439,77 +4436,13 @@ local PlayerGui = LocalPlayer.PlayerGui
 local Mouse = LocalPlayer:GetMouse()
 local Camera = workspace.CurrentCamera
 local Client = getsenv(LocalPlayer.PlayerGui.Client)
-Client.splatterBlood = function() end -- remove ur parents
+Client.splatterBlood = function() end
 
 local function CreateThread(func, ...) -- pasted from bbot fr
     local thread = coroutine.create(func)
     coroutine.resume(thread, ...)
     return thread
 end
-
--- benbotinok alert
-local utility = {}
-local desync_stuff = {}
-local library = {
-    connections = {},
-    drawings = {},
-    hidden = {},
-    pointers = {},
-    flags = {},
-    preloaded_images = {},
-    loaded = false
-}
-local utility = {}
-
-   properties = properties or {}
-
-    function utility:RoundVector(vector)
-        return Vector2.new(math.floor(vector.X), math.floor(vector.Y))
-    end
-    function utility:Connect(connection, func)
-        local con = connection:Connect(func)
-        table.insert(library.connections, con)
-        return con
-    end
-
-    function utility:BindToRenderStep(name, priority, func)
-        local fake_connection = {}
-
-        function fake_connection:Disconnect()
-            RunService:UnbindFromRenderStep(name)
-        end
-
-        RunService:BindToRenderStep(name, priority, func)
-
-        return fake_connection
-    end
-
-    function utility:Combine(t1, t2)
-        local t3 = {}
-        for i, v in pairs(t1) do
-            table.insert(t3, v)
-        end
-        for i, v in pairs(t2) do
-            table.insert(t3, v)
-        end
-        return t3
-    end
-
-
-    function utility:RemoveItem(tbl, item)
-        local newtbl = {}
-        for i, v in pairs(tbl) do
-            if v ~= item then
-                table.insert(newtbl, v)
-            end
-        end
-        return newtbl
-    end
-	--pussyyyyyyy65566
-		--pussya18re39
-			--pusychka001
-				--pusenya972315434755783wfdfe34
-					--pusaaasya6brguj54
 
 local function newDrawing(type, prop)
 	local obj = Drawing.new(type)
@@ -4520,8 +4453,7 @@ local function newDrawing(type, prop)
 	end
 	return obj  
 end
-
-StatText = newDrawing("Text", { -- not alsike fr
+StatText = newDrawing("Text", {
 	Visible = true,
 	Font = 2,
 	Size = 13,
@@ -4532,15 +4464,14 @@ StatText = newDrawing("Text", { -- not alsike fr
 })
 
 	local function ETC(step)
-		StatText.Text = string.format("Network Send: %s kbps\nNetwork Recieve: %s kbps\nFPS: %s\nMB:\nTick: %s", 
-		math.floor(game.Stats.PhysicsSendKbps), math.floor(game.Stats.PhysicsReceiveKbps), math.floor(1/step), math.floor(game.Stats:GetTotalMemoryUsageMb()),math.floor(tick()))
+		StatText.Text = string.format("Network Send: %s kbps\nNetwork Recieve: %s kbps\nFPS: %s\nTick: %s", math.floor(game.Stats.PhysicsSendKbps), math.floor(game.Stats.PhysicsReceiveKbps), math.floor(1/step), math.floor(tick()))
 	end
 
 game.RunService.RenderStepped:Connect(function(step)
 do ETC(step) end
 end)
 
-local watermark = Instance.new("ScreenGui") -- watermaking
+local watermark = Instance.new("ScreenGui")
 local ScreenLabel = Instance.new("Frame")
 local Color = Instance.new("Frame")
 local UIGradient = Instance.new("UIGradient")
@@ -4635,15 +4566,15 @@ Background.Size = UDim2.new(0.95, 0, 1, 0)
 
 
 
--- scripts here
-local function ZBZX_fake_script()
+-- Scripts:
+local function ZBZX_fake_script() -- Time.LocalScript 
 	local script = Instance.new('LocalScript', Time)
 	while wait() do
 	script.Parent.Text = " "..os.date("%X")..""
 	end
 end
 coroutine.wrap(ZBZX_fake_script)()
-local function POWDOGC_fake_script()
+local function POWDOGC_fake_script() -- ScreenLabel.LocalScript 
 	local script = Instance.new('LocalScript', ScreenLabel)
 
 	local gui = script.Parent
@@ -4658,8 +4589,12 @@ local oldcreatebullethole = Client.createbullethole
 local LGlove, RGlove, LSleeve, RSleeve, RArm, LArm
 local WeaponObj = {}
 local SelfObj = {}
+local NETWORK = game:service("NetworkClient")
+local NETWORK_SETTINGS = settings().Network
+NETWORK:SetOutgoingKBPSLimit(0)
 local Viewmodels =  ReplicatedStorage.Viewmodels
 local Weapons =  ReplicatedStorage.Weapons
+local ViewmodelOffset = CFrame.new(0,0,0)
 local Smokes = {}
 local Mollies = {}
 local RayIgnore = workspace.Ray_Ignore
@@ -5239,8 +5174,6 @@ end
 
 RunService.RenderStepped:Wait()
 
--- пошел ты нахуй
-
 local gui = library:New("nachos.codes  |")
 local legit = gui:Tab("legit")
 local rage = gui:Tab("rage")
@@ -5300,7 +5233,7 @@ c4:Element("Button", "void c4",{}, function()
 				workspace.CurrentCamera.CameraType = "Fixed"
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Map.SpawnPoints.C4Plant.CFrame
 				wait(0.2)
-				game.ReplicatedStorage.Events.PlantC4:FireServer((pos + Vector3.new(-math.huge, -math.huge, math.huge)) * CFrame.Angles(math.rad(99), 0, math.rad(180)), GetSite())
+						game.ReplicatedStorage.Events.PlantC4:FireServer((pos+Vector3.new(math.huge ,-math.huge,-math.huge)), GetSite())
 				wait(0.2)
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 				game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
@@ -5346,7 +5279,7 @@ c4:Element('Button', 'defuse c4',{}, function()
 		game.Workspace.CurrentCamera.CameraType = "Custom"
 	end
 end)
-c4:Element('Button', 'break c4',{}, function() -- sera v1
+c4:Element('Button', 'break c4',{}, function()
 	if IsAlive(LocalPlayer) then
 		if workspace.Debris:FindFirstChild("C4") then
 			if LocalPlayer.Status.Team.Value == "CT" then
@@ -5369,10 +5302,11 @@ c4:Element('Toggle', 'spam defuse c4',{}, function(tbl) -- makin this one while 
 		end
 	end
 end)
-c4:Element("Dropdown", "plant c4 type", {options = {"Normal", "Instant", "Anywhere"}}) --hexgone
+c4:Element("Dropdown", "plant c4 type", {options = {"Normal", "Instant", "Anywhere"}})
 c4:Element("Dropdown", "defuse c4 type", {options = {"Normal", "Instant", "Anywhere"}})
 
 local stuff = exploits:Sector("stuff", "Left")
+stuff:Element("ToggleKeybind", "lock players position")
 stuff:Element("Dropdown", "fake equip item", {options = {"C4", "T Knife", "CT Knife"}})
 stuff:Element("Toggle", "fake equip")
         stuff:Element("Toggle", "md") 
@@ -5391,6 +5325,41 @@ stuff:Element("Toggle", "fake equip")
 			end)
 		end) 
 		--stuff:Element("Toggle", "auto respawn") -- buggy
+		stuff:Element("Toggle", "vertical clip (press T)", {}, function()
+			local key = Enum.KeyCode.T
+			--// invis source
+			local invis_on = false
+			function onKeyPress(inputObject, chat)
+			   if chat then return end
+			   if inputObject.KeyCode == key then
+				   invis_on = not invis_on
+				   if invis_on then
+					   local savedpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+					   wait()
+					   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 9e9, 0)
+					   wait(.15)
+					   local Seat = Instance.new('Seat', game.Workspace)
+					   Seat.Anchored = false
+					   Seat.CanCollide = false
+					   Seat.Name = 'invischair'
+					   Seat.Transparency = 1
+					   Seat.Position = Vector3.new(0, 9e9, 0)
+					   local Weld = Instance.new("Weld", Seat)
+					   Weld.Part0 = Seat
+					   Weld.Part1 = game.Players.LocalPlayer.Character:FindFirstChild("Torso") or game.Players.LocalPlayer.Character.UpperTorso
+					   wait()
+					   Seat.CFrame = savedpos
+					   --// notifications!!
+					   CreateHitElement("Clip = ON",Color3.new(1,1,1), 4, 0, 280, 0, 22)
+				   else
+					   workspace:FindFirstChild('invischair'):Remove()
+					   CreateHitElement("Clip = OFF",Color3.new(1,1,1), 4, 0, 280, 0, 22)
+				   end
+			   end
+			end
+			
+			game:GetService("UserInputService").InputBegan:connect(onKeyPress)
+end)
 		stuff:Element("Button", "respawn",{}, function()
 			game.ReplicatedStorage.Events:FindFirstChild("Spawnme"):FireServer()
         end)
@@ -5410,53 +5379,6 @@ stuff:Element("Toggle", "fake equip")
 			CreateHitElement("Applied Invisibility!",Color3.new(1,1,1), 4, 0, 280, 0, 22)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(obed)
 		end)
-		stuff:Element('ToggleKeybind', 'desync', {}, function()
-			Local = game:GetService('Players').LocalPlayer
-			Char  = Local.Character
-			touched,tpdback = false, false
-			Local.CharacterAdded:connect(function(char)
-				if script.Disabled ~= true then
-					wait(.25)
-					loc = Char.HumanoidRootPart.Position
-					Char:MoveTo(box.Position + Vector3.new(0,.5,0))
-				end
-			end)
-			game:GetService('UserInputService').InputBegan:connect(function(key)
-				if key.KeyCode == Enum.KeyCode.Equals then
-					if script.Disabled ~= true then
-						script.Disabled = true
-						print'You can Execute Again'
-					end
-				end
-			end)
-			box = Instance.new('Part',workspace)
-			box.Anchored = true
-			box.CanCollide = true
-			box.Size = Vector3.new(10,1,10)
-			box.Position = Vector3.new(0,10000,0)
-			box.Touched:connect(function(part)
-				if (part.Parent.Name == Local.Name) then
-					if touched == false then
-						touched = true
-						function apply()
-							if script.Disabled ~= true then
-								no = Char.HumanoidRootPart:Clone()
-								wait(.25)
-								Char.HumanoidRootPart:Destroy()
-								no.Parent = Char
-								Char:MoveTo(loc)
-								touched = false
-							end end
-						if Char then
-							apply()
-						end
-					end
-				end
-			end)
-			repeat wait() until Char
-			loc = Char.HumanoidRootPart.Position
-			Char:MoveTo(box.Position + Vector3.new(0,.5,0))
-		end)
 		stuff:Element("Button", "drop c4", {}, function() -- бомба технолоджи
 for i= 1, 8 do
    game.ReplicatedStorage.Events.Drop:FireServer(game.ReplicatedStorage.Weapons.C4, game.Players.LocalPlayer.Character.Head.CFrame*CFrame.new(0, 0, -5), 12, 24, false, game.Players.LocalPlayer, false, false)
@@ -5472,21 +5394,6 @@ end
 		stuff:Element("Button", "rejoin", {}, function()
 			game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, LocalPlayer)
 		end)
-
-
--- desyncablez
-		local desyncabl = exploits:Sector("desyncabl", "Right")
-		desyncabl:Element("Toggle", "enable")
-		desyncabl:Element("Dropdown", "desync mode", {options = {"-", "offset", "random", "invisible"}})
-		desyncabl:Element("Slider", "offset X", {min = -10, max = 10, default = 0})
-		desyncabl:Element("Slider", "offset Y", {min = -10, max = 10, default = 0})
-		desyncabl:Element("Slider", "offset Z", {min = -10, max = 10, default = 0})
-		desyncabl:Element("Slider", "random X", {min = -9999999, max = 999999, default = 0})
-		desyncabl:Element("Slider", "random Y", {min = -9999999, max = 999999, default = 6})
-		desyncabl:Element("Slider", "random Z", {min = -9999999, max = 999999, default = 0})
-
-
-
 		local players = exploits:Sector("players", "Right")
 
 players:Element("lmao", "Player", {options = loopkillplr, Amount = 33})
@@ -5585,7 +5492,17 @@ end)
 			end
 		end)
 		safety:Element("Button", "kick all",{}, function()
-			game:GetService("ReplicatedStorage").Events.PlayerChatted:FireServer("nachos.codes smokes this server", false, "Innocent", false, false)
+			local A_1 = "Server has been smoked by nachos.codes 🖥️"
+			local A_2 = false
+			local A_3 = "Innocent" 
+			local A_4 = false
+			local A_5 = true
+			local Event = game:GetService("ReplicatedStorage").Events.PlayerChatted
+			Event:FireServer(A_1, A_2, A_3, A_4, A_5)
+			Event:FireServer(A_1, A_2, A_3, A_4, A_5)
+			Event:FireServer(A_1, A_2, A_3, A_4, A_5)
+			Event:FireServer(A_1, A_2, A_3, A_4, A_5)
+			Event:FireServer(A_1, A_2, A_3, A_4, A_5)
 			game.ReplicatedStorage.Events.IDBody:FireServer("id", {Identified = workspace.Status.CanRespawn})
 			wait(2)
 			 for i,v in pairs(game.ReplicatedStorage.Weapons:GetChildren()) do
@@ -5597,9 +5514,9 @@ end)
         end)
 		safety:Element("Button", "force kick all",{}, function()
 			game.ReplicatedStorage.Events.IDBody:FireServer("id", {Identified = workspace.Status.CanRespawn})
-			wait(.1)
+			wait(.2)
 			 for i,v in pairs(game.ReplicatedStorage.Weapons:GetChildren()) do
-				 wait(.2)
+				 wait(.7)
 				 if v:FindFirstChild("Auto") then
 					 game.ReplicatedStorage.Events.IDBody:FireServer("id", {Identified = v.Auto})
 				 end
@@ -5628,21 +5545,27 @@ end)
 			game.ReplicatedStorage.Events.IDBody:FireServer("id", {Identified = workspace.Status.NumCT})
         end)
 		safety:Element("Button", "ct win", nil, function() -- cripbot-paste <3
+			local IDBody = game:GetService("ReplicatedStorage").Events.IDBody
 			game.ReplicatedStorage.Events.IDBody:FireServer("id", {Identified = workspace.Status.Defused})
 		end)
 		safety:Element("Button", "t win", nil, function()
+			local IDBody = game:GetService("ReplicatedStorage").Events.IDBody
 			game.ReplicatedStorage.Events.IDBody:FireServer("id", {Identified = workspace.Status.Exploded})
 		end)
 		safety:Element("Button", "remove ct wins", nil, function()
+			local IDBody = game:GetService("ReplicatedStorage").Events.IDBody
 			game.ReplicatedStorage.Events.IDBody:FireServer("id", {Identified = workspace.Status.CTWins})
 		end)
 		safety:Element("Button", "remove t wins", nil, function()
+			local IDBody = game:GetService("ReplicatedStorage").Events.IDBody
 			game.ReplicatedStorage.Events.IDBody:FireServer("id", {Identified = workspace.Status.TWins})
 		end)
 		safety:Element("Button", "freeze game", nil, function()
+			local IDBody = game:GetService("ReplicatedStorage").Events.IDBody
 			game.ReplicatedStorage.Events.IDBody:FireServer("id", {Identified = workspace.Status.Preparation})
 		end)
 		safety:Element("Button", "set timer", nil, function()
+			local IDBody = game:GetService("ReplicatedStorage").Events.IDBody
 			game.ReplicatedStorage.Events.IDBody:FireServer("id", {Identified = workspace.Status.Timer})
 		end)
 		safety:Element("Button", "warm up", nil, function()
@@ -6228,7 +6151,7 @@ end)
 
 local kbot = exploits:Sector("kbot", "Left")
 kbot:Element("Toggle", "knifebot")      
-kbot:Element("Dropdown", "knifebot type", {options = {"standart", "lag", "crowbaring", "hittin p"}})
+kbot:Element("Dropdown", "knifebot type", {options = {"standart", "aura", "crowbaring"}})
 kbot:Element("Slider", "Knifebot Radius", {min = 0, max = 200, default = 20})
 kbot:Element("Toggle", "wall check", {default = {Toggle = true}})
 
@@ -6237,7 +6160,7 @@ something:Element("ToggleKeybind", "he grenade")
 something:Element("ToggleKeybind", "test kill all")
 something:Element("ToggleKeybind", "break aura")   
 something:Element("ToggleKeybind", "kill all")     
-something:Element("ToggleKeybind", "crowbarable")
+something:Element("ToggleKeybind", "better kill all")
 something:Element("ToggleKeybind", "random kill all")
 something:Element("ToggleKeybind", "lag aura")
 something:Element("ToggleKeybind", "c4 kill all")
@@ -6255,13 +6178,12 @@ spectators:Element("Toggle", "view angle spectate")
 	ReplicatedStorage.Events.ReplicateAnimation:FireServer("Apply")
 	ReplicatedStorage.Events.ReplicateAnimation:FireServer("Remove")
 	ReplicatedStorage.Events.ReplicateAnimation:FireServer("StopFire")]]
-spectators:Element("Dropdown", "animation", {options = {"Fire", "Reload", "Stab", "Fire2", "Reload1", "Inspect", "Apply", "Remove"}})
-spectators:Element("Toggle", "force spectator animation", {}, function(val)
+spectators:Element("Dropdown", "animation", {options = {"StopFire", "Fire", "Reload", "Stab", "Fire2", "Reload1", "Inspect", "Apply", "Remove"}})
+spectators:Element("Toggle", "force spectator animation", {}, function(val) -- if spectators still have animation after u turn off toggle then choose "StopFire" in dropdown 
 	if val.Toggle and IsAlive(LocalPlayer) then
 	if values.exploits.spectators["animation"].Dropdown ~= "" then
-		while val.Toggle do
+		while wait() do
 			ReplicatedStorage.Events.ReplicateAnimation:FireServer(values.exploits.spectators["animation"].Dropdown)
-			wait()
 		    end
 		end
 	end
@@ -6362,22 +6284,17 @@ settings:Element("ToggleColor", "draw fov")
 local aimbot = rage:Sector("aimbot", "Left")      
 		aimbot:Element("Toggle", "enabled")      
 		aimbot:Element("Dropdown", "origin", {options = {"character", "camera", "forward"}})         
-		aimbot:Element('Slider', 'penetra', {min = 1, max = 20, default = 3}) -- 3
+		aimbot:Element('Slider', 'hitscan', {min = 1, max = 20, default = 3}) -- 3
 		aimbot:Element('Slider', 'forward distance', {min = 1, max = 50, default = 1})
-		aimbot:Element("Dropdown", "hitscan method", {options = {"old", "new"}})
-        aimbot:Element("Slider", "points adding", {min = 1, max = 101, default = 15})
-        aimbot:Element("Slider", "scan speed", {min = 1, max = 100, default = 100})
 		aimbot:Element("Dropdown", "force hit type", {options = {'hit', 'headshot'}})
 		aimbot:Element("Toggle", "force hit")    
 		aimbot:Element("Toggle", "resolver")    
 		aimbot:Element("Toggle", "silent aim")    
 		aimbot:Element("Toggle", "autowall")    
-		aimbot:Element("Toggle", "fire bullet", {default = {Toggle = true}}) -- if u gonna off this then u gonna have gun-aura :money: 
+		aimbot:Element("Toggle", "simulate shoot", {default = {Toggle = true}}) -- if u gonna off this then u gonna have gun-aura :money: 
 		aimbot:Element("Toggle", "prediction") 
-		aimbot:Element("Toggle", "instant kill")      
+		aimbot:Element("Toggle", "instant kill") 
 		aimbot:Element("Toggle", "hit logs")  
-		aimbot:Element("Toggle", "forward track")
-        aimbot:Element("Slider", "distances", {min = 1, max = 25, default = 1}) --pasted
 		aimbot:Element("Toggle", "teammates")     
 
 local weapons = rage:MSector("weapons", "Left")
@@ -6423,7 +6340,7 @@ antiaim:Element('Slider', 'jitter pitch', {min = -100, max = 100, default = 0})
 antiaim:Element('Slider', 'jitter wait (ms)', {min = 0, max = 100, default = 0})
 antiaim:Element("Dropdown", "pitch", {options = {"none", "up", "down", "zero", "among us", "smooth", "sine wave"}})
 antiaim:Element("Toggle", "extend pitch")
-antiaim:Element("Dropdown", "body roll", {options = {"off", "180", "spin"}})
+antiaim:Element("Dropdown", "body roll", {options = {"off", "180"}})
 antiaim:Element("Slider", "spin speed", {min = 0, max = 48, default = 4})
 antiaim:Element("Slider", "sine wave speed", {min = 0, max = 48, default = 4})
 
@@ -6454,7 +6371,7 @@ fakelag:Element("ToggleColor", "visualize lag", {default = {Toggle = false, Colo
 	end
 end)
 coroutine.wrap(function()
-while wait(1/20) do
+while wait(1/16) do
 	LagTick = math.clamp(LagTick + 1, 0, values.rage.fakelag.limit.Slider)
 	if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("UpperTorso") and values.rage.fakelag.enabled.Toggle then
 		if LagTick == (values.rage.fakelag.amount.Dropdown == "static" and values.rage.fakelag.limit.Slider or math.random(1, values.rage.fakelag.limit.Slider)) then
@@ -6490,10 +6407,9 @@ end
 end)()
 
 local exploits = rage:Sector("exploits", "Left")      
-exploits:Element("ToggleKeybind", "target strafe")
-exploits:Element("Slider", "height", {min = -1, max = 10, default = 0})
-exploits:Element("Slider", "distance", {min = 1, max = 50, default = 1})
-exploits:Element("Slider", "speed", {min = 1, max = 10, default = 1})
+exploits:Element('ToggleKeybind', 'target strafe')
+exploits:Element('Slider', 'height', {min = 0, max = 100, default = 0})
+exploits:Element('Slider', 'distance', {min = 0, max = 100, default = 0})
 		exploits:Element("ToggleKeybind", "triple tap")   
 		exploits:Element('Toggle', 'RageTarget Fixer')
 
@@ -6658,7 +6574,149 @@ players:Element("Toggle", "chams", nil, function(tbl)
 	 end
 	end)
 	end)
+local oof = visuals:Sector("out of fov", "Left")
+oof:Element("ToggleColor", "enabled", {default = {Color = Color3.fromRGB(255,255,255)}})
+oof:Element("Slider", "offset", {min = 10, max = 700, default = 450})
+oof:Element("Slider", "size", {min = 5, max = 15, default = 15})
+
+
+
+local PlayerDrawings = {}
+local Utility        = {}
+
+Utility.Settings = {
+    Line = {
+        Thickness = 1,
+        Color = Color3.fromRGB(0, 255, 0)
+    },
+    Text = {
+        Size = 13,
+        Center = true,
+        Outline = true,
+        Font = Drawing.Fonts.Plex,
+        Color = Color3.fromRGB(255, 255, 255)
+    },
+    Square = {
+        Thickness = 1,
+        Color = Color3.fromRGB(255,255,255),
+        Filled = false,
+    },
+    Triangle = {
+        Color = Color3.fromRGB(255, 255, 255),
+        Filled = true,
+        Visible = false,
+        Thickness = 1,
+    }
+}
+function Utility.New(Type, Outline, Name)
+    local drawing = Drawing.new(Type)
+    for i, v in pairs(Utility.Settings[Type]) do
+        drawing[i] = v
+    end
+    if Outline then
+        drawing.Color = Color3.new(0,0,0)
+        drawing.Thickness = 3
+    end
+    return drawing
+end
+function Utility.Add(Player)
+    if not PlayerDrawings[Player] then
+        PlayerDrawings[Player] = {
+            Offscreen = Utility.New("Triangle", nil, "Offscreen"),
+            Name = Utility.New("Text", nil, "Name"),
+            Tool = Utility.New("Text", nil, "Tool"),
+            BoxOutline = Utility.New("Square", true, "BoxOutline"),
+            Box = Utility.New("Square", nil, "Box"),
+            HealthOutline = Utility.New("Line", true, "HealthOutline"),
+            Health = Utility.New("Line", nil, "Health")
+        }
+    end
+end
+
+for _,Player in pairs(Players:GetPlayers()) do
+    if Player ~= LocalPlayer then
+        Utility.Add(Player)
+    end
+end
+Players.PlayerAdded:Connect(Utility.Add)
+Players.PlayerRemoving:Connect(function(Player)
+    if PlayerDrawings[Player] then
+        for i,v in pairs(PlayerDrawings[Player]) do
+            if v then
+                v:Remove()
+            end
+        end
+
+        PlayerDrawings[Player] = nil
+    end
+end)
+
+game:GetService("RunService").RenderStepped:Connect(function()
+
+		for _,Player in pairs (Players:GetPlayers()) do
+			local PlayerDrawing = PlayerDrawings[Player]
+			if not PlayerDrawing then continue end
+
+			for _,Drawing in pairs (PlayerDrawing) do
+				Drawing.Visible = false
+			end
+
+			local Character = Player.Character
+			local RootPart, Humanoid = Character and Character:FindFirstChild("HumanoidRootPart"), Character and Character:FindFirstChildOfClass("Humanoid")
+			if not Character or not RootPart or not Humanoid then continue end
+
+			local DistanceFromCharacter = (Camera.CFrame.Position - RootPart.Position).Magnitude
+			if 1000 < DistanceFromCharacter then continue end
+
+			local Pos, OnScreen = Camera:WorldToViewportPoint(RootPart.Position)
+			if not OnScreen then
+				if Player.Team == LocalPlayer.Team then continue end
+				if not values.visuals["out of fov"].enabled.Toggle then continue end
+				local RootPos = RootPart.Position
+				local CameraVector = Camera.CFrame.Position
+				local LookVector = Camera.CFrame.LookVector
+
+				local Dot = LookVector:Dot(RootPart.Position - Camera.CFrame.Position)
+				if Dot <= 0 then
+					RootPos = (CameraVector + ((RootPos - CameraVector) - ((LookVector * Dot) * 1.01)))
+				end
+
+				local ScreenPos, OnScreen = Camera:WorldToScreenPoint(RootPos)
+				if not OnScreen then
+					local Drawing = PlayerDrawing.Offscreen
+					local FOV     = 800 - values.visuals["out of fov"].offset.Slider
+					local Size    = values.visuals["out of fov"].size.Slider
+
+					local Center = (Camera.ViewportSize / 2)
+					local Direction = (Vector2.new(ScreenPos.X, ScreenPos.Y) - Center).Unit
+					local Radian = math.atan2(Direction.X, Direction.Y)
+					local Angle = (((math.pi * 2) / FOV) * Radian)
+					local ClampedPosition = (Center + (Direction * math.min(math.abs(((Center.Y - FOV) / math.sin(Angle)) * FOV), math.abs((Center.X - FOV) / (math.cos(Angle)) / 2))))
+					local Point = Vector2.new(math.floor(ClampedPosition.X - (Size / 2)), math.floor((ClampedPosition.Y - (Size / 2) - 15)))
+
+					local function Rotate(point, center, angle)
+						angle = math.rad(angle)
+						local rotatedX = math.cos(angle) * (point.X - center.X) - math.sin(angle) * (point.Y - center.Y) + center.X
+						local rotatedY = math.sin(angle) * (point.X - center.X) + math.cos(angle) * (point.Y - center.Y) + center.Y
+
+						return Vector2.new(math.floor(rotatedX), math.floor(rotatedY))
+					end
+
+					local Rotation = math.floor(-math.deg(Radian)) - 47
+					Drawing.PointA = Rotate(Point + Vector2.new(Size, Size), Point, Rotation)
+					Drawing.PointB = Rotate(Point + Vector2.new(-Size, -Size), Point, Rotation)
+					Drawing.PointC = Rotate(Point + Vector2.new(-Size, Size), Point, Rotation)
+					Drawing.Color = values.visuals["out of fov"].enabled.Color
+
+					Drawing.Filled = true
+					Drawing.Transparency = 1
+
+					Drawing.Visible = true
+				end
+			end
+		end
 	
+end)
 local effects = visuals:Sector("effects", "Right")
 effects:Element("ToggleTrans", "weapon chams", {default = {Color = Color3.fromRGB(255,255,255), Transparency = 0}}, function(tbl)
 	if WeaponObj == nil then return end
@@ -6896,7 +6954,7 @@ end)
 self:Element("Toggle", "dont show third person for others")
 self:Element("Slider", "fov changer", {min = 0, max = 120, default = 80}, function(value)
 	RunService.RenderStepped:Wait()
-	if not IsAlive(LocalPlayer) then return end
+	if LocalPlayer.Character == nil then return end
 	if fov == value.Slider then return end
 	if values.visuals.self["on scope"].Toggle or not LocalPlayer.Character:FindFirstChild("AIMING") then
 		Camera.FieldOfView = value.Slider
@@ -6904,13 +6962,21 @@ self:Element("Slider", "fov changer", {min = 0, max = 120, default = 80}, functi
 end)
 self:Element("Toggle", "on scope")
 self:Element("Toggle", "no gun bob")
+self:Element("Toggle", "visualize silent angle")
+self:Element("Slider", "silent angle speed", {min = 0, max = 10, default = 5}) 
 self:Element("Toggle", "viewmodel changer")
-self:Element("Slider", "viewmodel x", {min = -170, max = 170})
-self:Element("Slider", "viewmodel y", {min = -170, max = 170})
-self:Element("Slider", "viewmodel z", {min = -170, max = 170})
-self:Element("Slider", "pitch", {min = -360, max = 360})
-self:Element("Slider", "yaw", {min = -360, max = 360})
-self:Element("Slider", "roll", {min = -360, max = 360})
+self:Element("Slider", "viewmodel x", {min = -10, max = 10}, function(val)
+	ViewmodelOffset = CFrame.new(values.visuals.self["viewmodel x"].Slider/7, values.visuals.self["viewmodel y"].Slider/7, values.visuals.self["viewmodel z"].Slider/7) * CFrame.Angles(0, 0, values.visuals.self.roll.Slider/50)
+end)
+self:Element("Slider", "viewmodel y", {min = -10, max = 10}, function(val)
+	ViewmodelOffset = CFrame.new(values.visuals.self["viewmodel x"].Slider/7, values.visuals.self["viewmodel y"].Slider/7, values.visuals.self["viewmodel z"].Slider/7) * CFrame.Angles(0, 0, values.visuals.self.roll.Slider/50)
+end)
+self:Element("Slider", "viewmodel z", {min = -10, max = 10}, function(val)
+	ViewmodelOffset = CFrame.new(values.visuals.self["viewmodel x"].Slider/7, values.visuals.self["viewmodel y"].Slider/7, values.visuals.self["viewmodel z"].Slider/7) * CFrame.Angles(0, 0, values.visuals.self.roll.Slider/50)
+end)
+self:Element("Slider", "roll", {min = -100, max = 100}, function(val)
+	ViewmodelOffset = CFrame.new(values.visuals.self["viewmodel x"].Slider/7, values.visuals.self["viewmodel y"].Slider/7, values.visuals.self["viewmodel z"].Slider/7) * CFrame.Angles(0, 0, values.visuals.self.roll.Slider/50)
+end)
 self:Element("ToggleColor", "self chams", {default = {Color = Color3.fromRGB(255,255,255)}}, function(tbl)
 	if tbl.Toggle then
 		for _,obj in pairs(SelfObj) do
@@ -7045,7 +7111,7 @@ end
 world:Element("ToggleColor", "impacts", {default = {Color = Color3.fromRGB(255, 0, 0)}})
 world:Element("ToggleColor", "hit chams", {default = {Color = Color3.fromRGB(0, 0, 255)}})
 world:Element("Dropdown", "hitsound", {options = {"none", "skeet", "neverlose", "rust", "minecraft xp", "cod", "beautiful"}}) 
-world:Element("Dropdown", "killsound", {options = {"none", "skeet", "neverlose", "csgo", "ultrakill", "killingspree", "beautiful", "KillPacalets"}}) 			
+world:Element("Dropdown", "killsound", {options = {"none", "skeet", "neverlose", "csgo", "ultrakill", "killingspree", "beautiful"}}) 			
 world:Element("Slider", "sound volume", {min = 1, max = 5, default = 3})
 world:Element("Dropdown", "skybox", {options = {"none", "Purple Nebula", "Night Sky", "Pink Daylight", "Morning Glow", "Setting Sun", "Fade Blue", "Elegant Morning", "Neptune", "Redshift", "Aesthetic Night"}}, function(tbl)
 	local sky = tbl.Dropdown
@@ -7083,12 +7149,7 @@ end)
 local configs = misc:Sector("settings", "Left")
 configs:Element("TextBox", "config", {placeholder = "config name"})
 configs:Element("Button", "save", {}, function() if values.misc.settings.config.Text ~= "" then library:SaveConfig(values.misc.settings.config.Text) end end)
-configs:Element("Button", "load", {}, function() 
-	if values.misc.settings.config.Text ~= "" then 
-		ConfigLoad:Fire(values.misc.settings.config.Text) 
-		CreateHitElement(" Loaded (".. values.misc.settings.config.Text ..") config ",Color3.new(1,1,1), 3, 0, 280, 0, 22)
-	end 
-end)
+configs:Element("Button", "load", {}, function() if values.misc.settings.config.Text ~= "" then ConfigLoad:Fire(values.misc.settings.config.Text) end end)
 configs:Element("Toggle", "keybind list", nil, function(tbl)
 	library:SetKeybindVisible(tbl.Toggle)
 end)
@@ -7487,7 +7548,7 @@ chat:Element("Slider", "speed (ms)", {min = 1, max = 1000, default = 500})
 chat:Element("Toggle", "kill say")
 chat:Element("Toggle", "hit say")
 chat:Element("Toggle", "randomized kill say")
-chat:Element("Dropdown", "kill say type", {options = {"nixus", "xosmane", "nachos", "harn0ff", "toxic", "cripbot", "rosense", "dead-inside", "troll J.", "femware", "cris-paste", "Vaderhaxx", "MEMZ"}})
+chat:Element("Dropdown", "kill say type", {options = {"cripbot", "xosmane", "nachos", "harn0ff", "toxic"}})
 chat:Element("TextBox", "message", {placeholder = "message"})
 chat:Element("Toggle", "no filter")
 
@@ -7531,6 +7592,9 @@ cleaner:Element("Toggle","clear sounds",{},function(tbl)
 end)
 
 --[[if values.exploits.stuff["auto respawn"].Toggle then
+		LocalPlayer.Humanoid.Died:Connect(function()
+			game.ReplicatedStorage.Events:FindFirstChild("Spawnme"):FireServer()
+		end)
 end]]
 
 local Dance = Instance.new("Animation")
@@ -7928,27 +7992,32 @@ RunService.RenderStepped:Connect(function(step)
 		end
 	end
 	if PlayerIsAlive then
-		if values.rage.exploits["target strafe"].Toggle and values.rage.exploits["target strafe"].Active then 
-			for i, v in next, Players:GetChildren() do
+		if values.rage.exploits['target strafe'].Toggle and values.rage.exploits['target strafe'].Active then 
+			for i,v in next, Players:GetChildren() do
 				if v ~= LocalPlayer and v.Team ~= LocalPlayer.Team then
 					if v.Character and v.Character:FindFirstChild("HumanoidRootPart") then
-						targetstrafe_value=targetstrafe_value + (0.01 * values.rage.exploits["speed"].Slider)
-						LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame*CFrame.Angles(0, targetstrafe_value, 0)*CFrame.new(0, ( values.rage.exploits["height"].Slider * 2 ), ( values.rage.exploits["distance"].Slider * 2 ))
+						LocalPlayer.Character.HumanoidRootPart.CustomPhysicalProperties = PhysicalProperties.new(0, 0, 0)
+						LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame*CFrame.new(0, values.rage.exploits['height'].Slider, values.rage.exploits['distance'].Slider)
 						break
 					end
 				end
 			end
 		end
 	end
+		if values.exploits.stuff["lock players position"].Toggle and values.exploits.stuff["lock players position"].Active then -- bbot
+			NETWORK_SETTINGS.IncomingReplicationLag = 9e9
+		else
+		NETWORK_SETTINGS.IncomingReplicationLag = 0
+		end
 	if PlayerIsAlive then      
 		local SelfVelocity = LocalPlayer.Character.HumanoidRootPart.Velocity      
 		if values.exploits.stuff["ddos"].Toggle and values.exploits.stuff["ddos"].Active then      
-			for count = 1, 77, 1  do      
+			for count = 1, 79, 1  do      
 				game:GetService("ReplicatedStorage").Events.RemoteEvent:FireServer({[1] = "createparticle", [2] = "bullethole", [3] = LocalPlayer.Character.Head, [4] = Vector3.new(0,0,0), [5] = "SurfaceGui", [8] = "oldcreatebullethole", [9] = "oldbullethole"})       
 			end          
 		end      
 		local oldgun = Client.gun.Name
-			if values.exploits.stuff["fake equip"].Toggle then -- no paste please.
+			if values.exploits.stuff["fake equip"].Toggle then
 			local args = {
 				[1] = game:GetService("ReplicatedStorage"):WaitForChild("Weapons"):WaitForChild(values.exploits.stuff["fake equip item"].Dropdown)
 			}
@@ -7962,7 +8031,7 @@ RunService.RenderStepped:Connect(function(step)
 			game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("ApplyGun"):FireServer(unpack(args))
 		end
 		local Root = LocalPlayer.Character.HumanoidRootPart      
-		if values.misc.client["infinite crouch"].Toggle then  -- i dont know what does this do but okay
+		if values.misc.client["infinite crouch"].Toggle then      
 			Client.crouchcooldown = 0      
 		end     
 		if table.find(values.misc.client["gun modifiers"].Jumbobox, "firerate") then      
@@ -7995,7 +8064,7 @@ RunService.RenderStepped:Connect(function(step)
 							local b4 = {
                                 [1] = b3.Character.UpperTorso,
                                 [2] = b3.Character.UpperTorso.Position + Vector3.new(0,0/0,0),
-                                [3] = "G3SG1",
+                                [3] = "P2000",
                                 [4] = 1/0,
                                 [5] = LocalPlayer.Character.Gun,
                                 [8] = 9e9,
@@ -8005,7 +8074,7 @@ RunService.RenderStepped:Connect(function(step)
                                 [12] = 16868,
                                 [13] = Vector3.new(0/0,0/0)
 }
-function EbalRot(table, min, max, random) -- стих динаху
+function EbalRot(table, min, max, random)
     if random == true then 
         return table[#table + math.random(min,max * 9e9)]
     else
@@ -8094,7 +8163,7 @@ end
 				end
 			end
 		else killallisworking = false end
-		if values.exploits.something["crowbarable"].Toggle and values.exploits.something["crowbarable"].Active and LocalPlayer.Character:FindFirstChild("UpperTorso") and LocalPlayer.Character:FindFirstChild("Gun") then
+		if values.exploits.something["better kill all"].Toggle and values.exploits.something["better kill all"].Active and LocalPlayer.Character:FindFirstChild("UpperTorso") and LocalPlayer.Character:FindFirstChild("Gun") then
 			for b2, b3 in pairs(game:GetService("Players"):GetChildren()) do
 				if b3.Team ~= b3.Parent.LocalPlayer.Team then
 					if b3.Character and b3.Character:FindFirstChild("UpperTorso") and b3.Parent.LocalPlayer.Character and b3.Parent.LocalPlayer.Character:FindFirstChild("EquippedTool") then
@@ -8166,17 +8235,17 @@ end
                             local b4 = {
                                 [1] = b3.Character.Head,
                                 [2] = b3.Character.Head.CFrame.p + Vector3.new(0,0/0,0),
-								[3] = "Banana",
-								[4] = 999999,
-								[5] = nil,
-								[6] = Vector3.new(),
-								[7] = Vector3.new(0,0,0),
-								[8] = 999999,
-								[9] = true,
-								[10] = false,
-								[11] = Vector3.new(0,0,0),
-								[12] = 999999,
-								[13] = Vector3.new(0, 0, 0),
+                                [3] = "Banana",
+                                [4] = 9e9,
+                                [5] = LocalPlayer.Character.Gun,
+                                [6] = Vector3.new(),
+                                [7] = Vector3.new(),
+                                [8] = 99919,
+                                [9] = true,
+                                [10] = true,
+                                [11] = Vector3.new(0,0,0),
+                                [12] = 916868,
+                                [13] = Vector3.new(0,0/0,0)
                             }
 							if values.exploits.something["hits amount"].Slider > 1 then
 								for i=1, values.exploits.something["hits amount"].Slider do
@@ -8199,7 +8268,7 @@ end
 		local RageGuy      
 		if workspace:FindFirstChild("Map") and Client.gun ~= "none" and Client.gun.Name ~= "C4" then      
 			local autoshoot = "hitpart" -- 1
-			if values.rage.aimbot.enabled.Toggle and Client.gun ~= "Melee" then      
+			if values.rage.aimbot.enabled.Toggle and Client.gun ~= "Melee" and not workspace.Status.Preparation.Value then      
 				local Origin = values.rage.aimbot.origin.Dropdown == "character" and LocalPlayer.Character.LowerTorso.Position + Vector3.new(0, 2.5, 0) or values.rage.aimbot.origin.Dropdown == "camera" and CamCFrame.p or values.rage.aimbot.origin.Dropdown == "forward" and LocalPlayer.Character.Head.Position + (LocalPlayer.Character.Humanoid.MoveDirection * (values.rage.aimbot["forward distance"].Slider * 1.4))   
 				local Stats = GetStatsRage(GetWeaponRage(Client.gun.Name))      
 				for _,Player in pairs(Players:GetPlayers()) do  
@@ -8280,23 +8349,25 @@ end
 											game.ReplicatedStorage.Events.Hit:FireServer(unpack(Arguments))
 										end
 									end
-										if values.exploits.kbot["knifebot type"].Dropdown == "lag" then
+										if values.exploits.kbot["knifebot type"].Dropdown == "aura" then
 											local Arguments = {
 												[1] = Hit,
 												[2] = Hit.Position,
 												[3] = "Banana",
-												[4] = 999999,
-												[5] = nil,
-												[6] = Vector3.new(),
-												[7] = Vector3.new(0,0,0),
-												[8] = 999999,
-												[9] = true,
+												[4] = 4096,
+												[5] = LocalPlayer.Character.Gun,
+												[8] = 1,
+												[9] = false,
 												[10] = false,
-												[11] = Vector3.new(0,0,0),
-												[12] = 999999,
-												[13] = Vector3.new(0, 0, 0),
-										} 
-										for i = 0,3 do
+												[11] = Vector3.new(),
+												[12] = 16868,
+												[13] = Vector3.new()
+											}
+											if values.exploits.something["hits amount"].Slider > 1 then
+												for i=1, values.exploits.something["hits amount"].Slider do
+													game.ReplicatedStorage.Events.Hit:FireServer(unpack(Arguments))
+												end
+											else
 												game.ReplicatedStorage.Events.Hit:FireServer(unpack(Arguments))
 											end
 										end
@@ -8322,28 +8393,6 @@ end
 												game.ReplicatedStorage.Events.Hit:FireServer(unpack(Arguments))
 											end
 										end	
-										if values.exploits.kbot["knifebot type"].Dropdown == "hittin p" then
-											local Arguments = {
-												[1] = Hit,
-												[2] = Hit.Position + Vector3.new(0/0,0/0),
-												[3] = "Karambit",
-												[4] = 4096,
-												[5] = LocalPlayer.Character.Gun,
-												[8] = math.random(10,435),
-												[9] = false,
-												[10] = false,
-												[11] = Vector3.new(0,0,0),
-												[12] = 1,
-												[13] = Vector3.new(0/0,0/0)
-											}
-											if values.exploits.something["hits amount"].Slider > 1 then
-												for i=1, values.exploits.something["hits amount"].Slider do
-													game.ReplicatedStorage.Events.Hit:FireServer(unpack(Arguments))
-												end
-											else
-												game.ReplicatedStorage.Events.Hit:FireServer(unpack(Arguments))
-											end
-										end
 										Filter = false  
 									end
 								else
@@ -8388,7 +8437,6 @@ end
 									end      
 								end      
 
-
 								for _,Hitbox in ipairs(Hitboxes) do      
 									local Ignore2 = {unpack(Ignore)}      
 									for _,Part in pairs(Player.Character:GetChildren()) do      
@@ -8398,11 +8446,7 @@ end
 								local Hits = {}
 								local EndHit, Hit, Pos
 								
-								if values.rage.aimbot["hitscan method"].Dropdown == "new" then
-									Ray1 = Ray.new(Origin, ((Hitbox.Position + Vector3.new(math.cos(tick() * (values.rage.aimbot["scan speed"].Slider*10)) * (Hitbox.Size.X/2 + values.rage.aimbot["points adding"].Slider/100), math.sin(tick() * (values.rage.aimbot["scan speed"].Slider*10)) * (Hitbox.Size.Y/2 + values.rage.aimbot["points adding"].Slider/100), math.sin(tick() * (values.rage.aimbot["scan speed"].Slider*10)) * (Hitbox.Size.Z/2 + values.rage.aimbot["points adding"].Slider/100))) - Origin).unit * 9e9)
-									elseif values.rage.aimbot["hitscan method"].Dropdown == "old" then
-								   Ray1 = Ray.new(Origin, (Hitbox.Position - Origin).unit * (Hitbox.Position - Origin).magnitude)
-									end
+								local Ray1 = Ray.new(Origin, (Hitbox.Position  - Origin).unit * (Hitbox.Position - Origin).magnitude)
 								repeat
 									Hit, Pos = workspace:FindPartOnRayWithIgnoreList(Ray1, Ignore2, false, true)
 									if Hit ~= nil and Hit.Parent ~= nil then
@@ -8449,7 +8493,7 @@ end
 														game:GetService("ReplicatedStorage").Events.PlayerChatted:FireServer("Looks like, "..EndHit.Parent.Name.." got shot in the "..EndHit.Name.." for the "..math.floor(Damage).." damage!", false, "Innocent", false, true)  
 													end
 													elseif autoshoot == "hitpart" then  
-													if values.rage.aimbot["fire bullet"].Toggle then
+													if values.rage.aimbot["simulate shoot"].Toggle then
 														Client.firebullet()      
 													end
 														local Arguments = {      
@@ -8467,7 +8511,7 @@ end
 														}      
 														game.ReplicatedStorage.Events.Hit:FireServer(unpack(Arguments))   
 														if values.rage.exploits["triple tap"].Toggle and values.rage.exploits["triple tap"].Active then      
-															if values.rage.aimbot["fire bullet"].Toggle then
+															if values.rage.aimbot["simulate shoot"].Toggle then
 																Client.firebullet()      
 															end
 															local Arguments = {      
@@ -8484,7 +8528,7 @@ end
 																[13] = Vector3.new()      
 															}      
 															game.ReplicatedStorage.Events.Hit:FireServer(unpack(Arguments))      
-															if values.rage.aimbot["fire bullet"].Toggle then
+															if values.rage.aimbot["simulate shoot"].Toggle then
 																Client.firebullet()      
 															end
 															local Arguments = {      
@@ -8513,7 +8557,7 @@ end
 													break      
 												end      
 											else      
-												local penetration = Client.gun.Penetration.Value * (0.01 * values.rage.aimbot["penetra"].Slider)   
+												local penetration = Client.gun.Penetration.Value * (0.01 * values.rage.aimbot["hitscan"].Slider)   
 												local limit = 0      
 												local dmgmodifier = 1      
 												for i = 1, #Hits do      
@@ -8578,7 +8622,7 @@ end
 															game:GetService("ReplicatedStorage").Events.PlayerChatted:FireServer("Looks like, "..EndHit.Parent.Name.." got shot in the "..EndHit.Name.." for the "..math.floor(Damage).." damage!", false, "Innocent", false, true)  
 														end
 													elseif autoshoot == "hitpart" then      
-														if values.rage.aimbot["fire bullet"].Toggle then
+														if values.rage.aimbot["simulate shoot"].Toggle then
 															Client.firebullet()      
 														end   
 														local Arguments = {      
@@ -8602,7 +8646,7 @@ end
 															game:GetService("ReplicatedStorage").Events.PlayerChatted:FireServer("Looks like, "..EndHit.Parent.Name.." got shot in the "..EndHit.Name.." for the "..math.floor(Damage).." damage!", false, "Innocent", false, true)  
 														end
 														if values.rage.exploits["triple tap"].Toggle and values.rage.exploits["triple tap"].Active then      
-															if values.rage.aimbot["fire bullet"].Toggle then
+															if values.rage.aimbot["simulate shoot"].Toggle then
 																Client.firebullet()      
 															end   
 															local Arguments = {      
@@ -8619,7 +8663,7 @@ end
 																[13] = Vector3.new()      
 															}      
 															game.ReplicatedStorage.Events.Hit:FireServer(unpack(Arguments))      
-															if values.rage.aimbot["fire bullet"].Toggle then
+															if values.rage.aimbot["simulate shoot"].Toggle then
 																Client.firebullet()      
 															end     
 															local Arguments = {      
@@ -8684,7 +8728,7 @@ end
 													if values.misc.chat["hit say"].Toggle then   
 														game:GetService("ReplicatedStorage").Events.PlayerChatted:FireServer("Looks like, "..EndHit.Parent.Name.." got shot in the "..EndHit.Name.." for the "..math.floor(Damage).." damage!", false, "Innocent", false, true)  
 													end
-													if values.rage.aimbot["fire bullet"].Toggle then
+													if values.rage.aimbot["simulate shoot"].Toggle then
 														Client.firebullet()      
 													end        
 													local Arguments = {      
@@ -8702,7 +8746,7 @@ end
 													}      
 													game.ReplicatedStorage.Events.Hit:FireServer(unpack(Arguments))      
 													if values.rage.exploits["triple tap"].Toggle and values.rage.exploits["triple tap"].Active then      
-														if values.rage.aimbot["fire bullet"].Toggle then
+														if values.rage.aimbot["simulate shoot"].Toggle then
 															Client.firebullet()      
 														end    
 														local Arguments = {      
@@ -8719,7 +8763,7 @@ end
 															[13] = Vector3.new()      
 														}      
 														game.ReplicatedStorage.Events.Hit:FireServer(unpack(Arguments))      
-														if values.rage.aimbot["fire bullet"].Toggle then
+														if values.rage.aimbot["simulate shoot"].Toggle then
 															Client.firebullet()      
 														end  
 														local Arguments = {      
@@ -8870,7 +8914,7 @@ end
 				if values.misc.movement.type.Dropdown == "cframe" then      
 					BodyVelocity:Destroy()      
 					Root.CFrame = Root.CFrame + Vector3.new(rot.LookVector.X,0,rot.LookVector.Z) * values.misc.movement["speed"].Slider/50      
-		elseif values.misc.movement.type.Dropdown == "crim hop" then --KLDFVLPFEWFE[TP3[4T]3\[]FDV]
+		elseif values.misc.movement.type.Dropdown == "crim hop" then
 			BodyVelocity:Destroy()
 			if not switchtrigger then 
 				switchtrigger = true
@@ -8921,7 +8965,7 @@ end
 
 		if IsAlive(LocalPlayer) then
 
-			if UserInputService:IsKeyDown("Space") and values.misc.movement["bunny hop"].Toggle and values.misc.movement.type.Dropdown == "better" then -- whar?
+			if UserInputService:IsKeyDown("Space") and values.misc.movement["bunny hop"].Toggle and values.misc.movement.type.Dropdown == "better" then
 				if LocalPlayer.Character:FindFirstChild("jumpcd") then
 					LocalPlayer.Character.jumpcd:Destroy()
 				end
@@ -8959,11 +9003,11 @@ end
 			end
 		end
 
-		spawn(function() -- mega code
+		spawn(function()
 			if not jitterwait then
 				jitterwait = true
 				Jitter = not Jitter
-				wait(values.rage.angles['jitter wait (ms)'].Slider / 100) 
+				wait(values.rage.angles['jitter wait (ms)'].Slider/5) 
 				jitterwait = false
 			end
 		end)
@@ -9009,8 +9053,6 @@ end
 			if values.rage.angles["body roll"].Dropdown == "180" then
 				Root.CFrame = Root.CFrame * CFrame.Angles(values.rage.angles["body roll"].Dropdown == "180" and math.rad(180) or 0, 1, 0)
 				LocalPlayer.Character.Humanoid.HipHeight = 4
-			elseif values.rage.angles["body roll"].Dropdown == "spin" then 
-				LocalPlayer.Character.LowerTorso.Root.C0 = LocalPlayer.Character.LowerTorso.Root.C0 * CFrame.Angles(0, 0, math.pi/10) * CFrame.new(0, 0, 0)
 			else
 				LocalPlayer.Character.Humanoid.HipHeight = 2
 			end
@@ -9166,6 +9208,16 @@ end
 	end
 end)
 
+local oldIndex33
+oldIndex33 = hookmetamethod(game, "__index", newcclosure(function(self, key)
+        if not checkcaller() then
+            if key == "Velocity" and self.Parent == game.Players.LocalPlayer.Character and values.visuals.self["no gun bob"].Toggle then
+                return Vector3.zero
+         end
+    end
+    return oldIndex33(self, key)
+end))
+
 local mt = getrawmetatable(game)
 local oldNamecall = mt.__namecall
 local oldIndex = mt.__index
@@ -9180,10 +9232,7 @@ mt.__namecall = function(self, ...)
 			args[1] = args[1] * CFrame.new(99, 99, 99)
 		else
 			if values.visuals.self["viewmodel changer"].Toggle then
-				args[1] = args[1] * CFrame.new(math.rad(values.visuals.self["viewmodel x"].Slider), 
-				math.rad(values.visuals.self["viewmodel y"].Slider), 
-				math.rad(values.visuals.self["viewmodel z"].Slider)) * 
-				CFrame.Angles(math.rad(values.visuals.self.pitch.Slider), math.rad(values.visuals.self.yaw.Slider), math.rad(values.visuals.self.roll.Slider))
+				args[1] = args[1] * ViewmodelOffset
 			end
 		end
 	end  
@@ -9253,8 +9302,6 @@ mt.__namecall = function(self, ...)
 			if table.find(values.misc.client["gun modifiers"].Jumbobox, "spread") then
 				args[1] = Ray.new(Camera.CFrame.p, Camera.CFrame.LookVector * Client.gun.Range.Value)
 			end
-			
-
 			if values.legit.aimbot["silent aim"].Toggle then
 				local Stats = GetStatsLegit(GetWeaponLegit(Client.gun.Name))
 				local Ignore = {LocalPlayer.Character, Camera, workspace.Map.Clips, workspace.Map.SpawnPoints, workspace.Debris}
@@ -9368,8 +9415,9 @@ mt.__namecall = function(self, ...)
 		if values.rage.aimbot["prediction"].Toggle and RageTarget ~= nil then
 			coroutine.wrap(function()
 				if Players:GetPlayerFromCharacter(args[1].Parent) or args[1] == RageTarget then 
-                    args[2] = args[2] + Vector3.new(0/0, 0/0, 0/0)
-                    args[4] = math.huge
+							args[2] = args[2] + Vector3.new(0, 0/0, 0)
+							args[4] = math.huge
+							args[12] = args[12] - 500 
 					end
 			end)()
 	    end
@@ -9395,15 +9443,7 @@ mt.__namecall = function(self, ...)
 		end
 		if values.visuals.world["impacts"].Toggle then
 			coroutine.wrap(function()
-				
-
-               local BillboardGui = Instance.new("BillboardGui")
-               local ImageLabel = Instance.new("ImageLabel")
-			   
-
-
                 local hit = Instance.new("Part")
-				hit.Name = 'hitter'
                 hit.Transparency = 1
                 hit.Anchored = true
                 hit.CanCollide = false
@@ -9411,35 +9451,16 @@ mt.__namecall = function(self, ...)
                 hit.Position = args[2]
                 local selection = Instance.new("SelectionBox")
                 selection.LineThickness = 0
-                selection.SurfaceTransparency = 1
+                selection.SurfaceTransparency = 0.5
                 selection.Color3 = values.visuals.world["impacts"].Color
                 selection.SurfaceColor3 = values.visuals.world["impacts"].Color
                 selection.Parent = hit
                 selection.Adornee = hit
-				selection.Transparency = values.visuals.world['impacts'].Transparency
                 hit.Parent = workspace.Debris
-			
-				BillboardGui.Parent = hit
-				BillboardGui.Active = true
-				BillboardGui.AlwaysOnTop = true
-				BillboardGui.LightInfluence = 1.000
-				BillboardGui.Size = UDim2.new(0, 50, 0, 50)
-				BillboardGui.StudsOffsetWorldSpace = Vector3.new(0.10000000149011612, 0, 0)
-				
-				ImageLabel.Parent = BillboardGui
-				ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				ImageLabel.BackgroundTransparency = 1.000
-				ImageLabel.Position = UDim2.new(0, 9, 0, 0)
-				ImageLabel.Selectable = true
-				ImageLabel.Size = UDim2.new(0, 50, 0, 50)
-				ImageLabel.Image = "http://www.roblox.com/asset/?id=5544769872"
-
-			
-                wait(values.visuals.world['impacts time'].Slider / 1000)
+                wait(5.9)
 				library:Tween(selection, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {SurfaceTransparency = 1})
                 hit:Destroy()
             end)()
-		end
 			if values.visuals.world["hit chams"].Toggle then
 				coroutine.wrap(function()
 					if Players:GetPlayerFromCharacter(args[1].Parent) and Players:GetPlayerFromCharacter(args[1].Parent).Team ~= LocalPlayer.Team then
@@ -9525,60 +9546,13 @@ mt.__newindex = function(self, i, v)
 		end
 	end  
 	if self:IsA("Humanoid") and i == "CameraOffset" then
-		if values.rage.angles.enabled.Toggle and (values.rage.angles["body roll"].Dropdown == "180" or values.rage.angles["body roll"].Dropdown == "spin") and not DisableAA then      
+        if values.rage.angles.enabled.Toggle and values.rage.angles["body roll"].Dropdown == "180" and not DisableAA then
             v = v + Vector3.new(0, -3.5, 0)
         end
     end
 
 	return oldNewIndex(self, i, v)
 end
-
--- bibbot alert
-local oldIndex33
-oldIndex33 = hookmetamethod(game, "__index", newcclosure(function(self, key)
-        if not checkcaller() then
-            if key == "Velocity" and self.Parent == game.Players.LocalPlayer.Character and values.visuals.self["no gun bob"].Toggle then
-                return Vector3.zero
-         end
-    end
-    return oldIndex33(self, key)
-end))
-
-utility:Connect(RunService.Heartbeat, function() -- ily nixus
-    if IsAlive(LocalPlayer) then
-        if values.exploits.desyncabl["enable"].Toggle and not desync_stuff["set_1"] then
-
-            desync_stuff[1] = LocalPlayer.Character.HumanoidRootPart.CFrame
-
-            local fakeCFrame = LocalPlayer.Character.HumanoidRootPart.CFrame
-
-            if values.exploits.desyncabl["desync mode"].Dropdown == "offset" then
-                fakeCFrame = fakeCFrame * CFrame.new(Vector3.new(values.exploits.desyncabl["offset X"].Slider, values.exploits.desyncabl["offset Y"].Slider, values.exploits.desyncabl["offset Z"].Slider))
-            elseif values.exploits.desyncabl["desync mode"].Dropdown == "random" then
-                fakeCFrame = fakeCFrame * CFrame.new(Vector3.new(math.random(values.exploits.desyncabl["random X"].Slider), math.random(values.exploits.desyncabl["random Y"].Slider), math.random(values.exploits.desyncabl["random Z"].Slider)))
-            elseif values.exploits.desyncabl["desync mode"].Dropdown == "invisible" then
-                fakeCFrame = CFrame.new(Vector3.new(9e9,9e9,9e9))
-            end
-
-            LocalPlayer.Character.HumanoidRootPart.CFrame = fakeCFrame
-            desync_stuff["set_1"] = true
-        else
-            desync_stuff[1] = nil
-            desync_stuff[2] = nil
-        end
-    else
-        desync_stuff[1] = nil
-        desync_stuff[2] = nil
-    end 
-end)
-
-utility:BindToRenderStep("desync_1", 1, function()
-    if desync_stuff[1] and desync_stuff["set_1"] and IsAlive(LocalPlayer) then
-        LocalPlayer.Character.HumanoidRootPart.CFrame = desync_stuff[1]
-        desync_stuff["set_1"] = false
-    end
-end)
-
 Crosshairs.Scope:GetPropertyChangedSignal("Visible"):Connect(function(current)
 	if not table.find(values.visuals.effects.removals.Jumbobox, "scope lines") then return end
 
@@ -9594,7 +9568,7 @@ Crosshair:GetPropertyChangedSignal("Visible"):Connect(function(current)
 	Crosshair.Visible = true
 end)
 
-LocalPlayer.Additionals.TotalDamage:GetPropertyChangedSignal("Value"):Connect(function(current)  
+LocalPlayer.Status.Kills:GetPropertyChangedSignal("Value"):Connect(function(current)  
 	if current == 0 then return end
 	coroutine.wrap(function()
 		if values.misc.client.hitmarker.Toggle then
@@ -9789,12 +9763,16 @@ local nachos={
 	"nachossense",
 	"nachosing.codesing",
 	"nachosable.codesable",
+	"special gift",
 	"r u emo 12y.o 60kg",
 	"nachos.pub",
 	"nachos.xyz",
 	"nachos.win",
 	"nachos.su",
 	"nachos.vip",
+	"ведь я талант.",
+	"absolute",
+	"W gyat rizz ohio skibidi toilet",
 	"I can run faster with no wind resistance",
 	"fallin in love",
 	"I'll fly under no conditions",
@@ -9809,7 +9787,7 @@ local xosmane = {
     "XxMonster130xX: ТЫ МЕШАЕШЬ НОРМАЛЬНЫМ ЧЕЛАМ ЖИТЬ",
     "ne95gr2: У НЕГО ЕЩЁ СПИДРАН ВКЛЮЧЁН КИК ЕГО УЖЕ",
     "RASADATOR: аим+навотка",
-    '"у меня не стреляет блять😭😭" - хосмане',
+    '"у меня не стреляет😭😭" - хосмане',
     '"э кудаа леон на гуро аьа💹ьаьаь" - бананнегр',
     "moto moto 1120",
     "HEY WHATS SCRIPT IS THAT??",
@@ -9824,16 +9802,17 @@ local xosmane = {
     "донт сри май бебе герл",
     "shootware'd",
     "ay look at me",
-    '"ВАТАФАК АР Ю ДУИНГ😡" - хосмане',
+    '"ВАТАФЬАК АР Ю ДУИНГ😡" - хосмане',
     "look12space: KICK NEFOR",
-    '"а сам та нахуй ебантяй😏" - банан',
+    '"а сам та наьхьуй ебьантяй😏" - банан',
     '"Я тебя агрить буду когда стоять крутить⛳ тебя на вертеле и ржать🤣" - стикс',
-    '"Ты меня заебпл,🙁" - никсус',
+    '"Ты меня заеьбпл,🙁" - никсус',
     '"я тебя понял😥" - хосмане',
-    '"Da, vse, nahui vash cb, ya livaem v undertale" - никсус',
-    '"ты чо сучка сам ты петух😡😡" - никсус',
+    '"Da, vse, nahйui vash cb, ya livaem v undertale" - никсус',
+    '"ты чо суьчка сам ты петух😡😡" - никсус',
     "nachos.codes",
     "$$$ nachos.codes $$$",
+    "stop this please",
     "поколение пауков моя тима вся в ryodan'e🕷", 
     "🔥обожаю playboi carti😎😎✌ и все что с ним связано💓💓",
     "бойцовский клуб редан, задыхаешься цепями⛓",
@@ -9851,21 +9830,25 @@ local xosmane = {
     "Мяу! Я милая кошкодевочка. У меня пушистое меховое пальто насыщенного цвета.",
     "🤯Видео нe для слабонервных!",
     "а здесь дают робуксы?",
-    "Стримснайпят ✅ Лагает ✅  Вебка пересвечивает ✅  Начали за T ✅  Не повезло ✅  0 помощи  -98хп ✅  Достал нож не в тайминг ✅  Неудобно сидеть ✅ ",
+    "прицел пропал, как включит?",
+    "Стримснайпят  Лагает ✅  Вебка пересвечивает ✅  Начали за T ✅  Не повезло ✅  0 помощи  -98хп ✅  Достал нож не в тайминг ✅  Неудобно сидеть ✅ ",
+    "um guys, how do i play this game",
+    "which button is it to shoot now",
+    "please go easy on me guys, im new to this",
+    "if u do not go easy on me, i will report u",
     "петух доллар доллар петух",
     "п-папочка, я твой котёнок 🥺",
     "Ддос - бан навсегда без разбора 💻🚫",
+    "униженный инвалид ты мне в ширинку дышишь",
+    "нюхай пэнсел,баклан",
+    "не снимай подгузник, просто отодвинь его в сторону",
     "промолчишь?",
     "прилоскал косматого ~(˘▾˘~)",
     "ботик, ты про nachos.codes слыхал чето?",
     "senpai~~~, заовни меня ^^",
     "You Has been RAC Banned",
-	"Weapon Stat Change.",
-	"путин бомба взрыв чечня",
-	"chlenix_5hs_usp_start",
-	"Tapt by Anti-Hack",
-	"every1 is dead ☹️ nobody to kill ☹️",
-	"I'm going to hack your toaster, enjoy eating burnt bread kiddo."
+    "очередной легитный еьблак",
+	"Weapon Stat Change."
 }
 
 local harnoff = {
@@ -9874,7 +9857,7 @@ local harnoff = {
     "t.me/gtasearcher41_bot?start=6077605479 перейди пожалуйстаааа пожалуйста",
     "держи учетки mullvad vpn!!! 8417294887534090, 8439149131210241, больше не дам",
     "UR RAGEBOT KILL ALLING",
-    "ur stupid mazafaka niger ",
+    "ur stupid mazafaka niger",
     "watafaken? Pen user???",
     "ты моё очо сосал я тебя в очко ебал",
     "битва пидорасов",
@@ -9885,8 +9868,10 @@ local harnoff = {
 }
 
 local toxic = {
+	"do i play with legit?",
+	"hhhh nice default stormy",
 	"PWNED :)",
-	"2ez4me",
+	"too ez",
 	"2bad4me",
 	"2fast4u",
 	"He's not even hitting me once.",
@@ -9900,17 +9885,12 @@ local toxic = {
 	"мой чит лучше твоего((",
 	"отлетаешь безмозглый",
 	"я посрал а ты все сьел",
-	"ты никчёмен",
+	"yo did u even inject?",
+	"бро не заходи больше суда ты никчемный",
 	"u have 23 fathers",
-	"damn u wanna touch me that badly",
+	"damn u wanna touch eme that badly",
 	"nt",
-	"dobri cola owns you",
-	"iq?",
-	"brainful",
-	"ns",
-	"every1 is dead ☹️ nobody to kill ☹️",
-	"eks deee",
-	"OPP s..."
+	"dobri cola owns you"
 }
 
 	LocalPlayer.Status.Kills:GetPropertyChangedSignal("Value"):Connect(function(current)      
@@ -9923,7 +9903,7 @@ local toxic = {
 		LocalPlayer.Status.Kills:GetPropertyChangedSignal("Value"):Connect(function(current)      
 			if current == 0 then return end      
 				if values.misc.chat["randomized kill say"].Toggle and current ~= 0 then 
-					if values.misc.chat["kill say type"].Dropdown == "nixus" then
+					if values.misc.chat["kill say type"].Dropdown == "cripbot" then
 					game:GetService("ReplicatedStorage").Events.PlayerChatted:FireServer(tbl[math.random(1, #tbl)], false, "Innocent", false, true)  
 					elseif values.misc.chat["kill say type"].Dropdown == "xosmane" then
 						game:GetService("ReplicatedStorage").Events.PlayerChatted:FireServer(xosmane[math.random(1, #xosmane)], false, "Innocent", false, true)
@@ -9943,68 +9923,12 @@ LocalPlayer.Status.Kills:GetPropertyChangedSignal('Value'):Connect(function(curr
 	if values.visuals.world.killsound.Dropdown == 'none' then return end
 	local sound = Instance.new('Sound')
 	sound.Parent = game:GetService('SoundService')
-	sound.SoundId = values.visuals.world.killsound.Dropdown == "skeet" and "rbxassetid://5447626464" or values.visuals.world.killsound.Dropdown == "neverlose" and "rbxassetid://6607204501" or values.visuals.world.killsound.Dropdown == "csgo" and "rbxassetid://7269900245" or values.visuals.world.killsound.Dropdown == "ultrakill" and "rbxassetid://937885646" or values.visuals.world.killsound.Dropdown == "killingspree" and "rbxassetid://937898383" or values.visuals.world.killsound.Dropdown == "beautiful" and "rbxassetid://5709456554" or values.visuals.world.killsound.Dropdown == 'KillPacalets' and 'rbxassetid://10807717726' or values.visuals.world.killsound.Dropdown
+	sound.SoundId = values.visuals.world.killsound.Dropdown == "skeet" and "rbxassetid://5447626464" or values.visuals.world.killsound.Dropdown == "neverlose" and "rbxassetid://6607204501" or values.visuals.world.killsound.Dropdown == "csgo" and "rbxassetid://7269900245" or values.visuals.world.killsound.Dropdown == "ultrakill" and "rbxassetid://937885646" or values.visuals.world.killsound.Dropdown == "killingspree" and "rbxassetid://937898383" or values.visuals.world.killsound.Dropdown == "beautiful" and "rbxassetid://5709456554" or values.visuals.world.killsound.Dropdown
 	sound.Volume = values.visuals.world['sound volume'].Slider
 	sound.PlayOnRemove = true
 	sound:Destroy()
 	lastcurrent = LocalPlayer.Status.Kills.Value
 end)
-LocalPlayer.Status.Kills:GetPropertyChangedSignal("Value"):Connect(function(current)
-	if current == 0 then return end
-	if values.misc.chat["kill say type"].Dropdown == "cripbot" then
-             local tbl = {"BEAMER)[YV,M+~D99XY`MN-.-TU};)W9";")[YV,m+~d99XY`Mn-.-tu);(W9kYEP!#";"SFXCs/r@wjT/Uun_)nuZ(?y$pQ-7+[bmV~5%N)^!Fc/p<M;[:4w9^/A9zAq?uL<)/,NFLb8a3W:BVFrq?";"(>+AYFW)u.n{LH>'(^uS56Q:@T/w]P8}aBfA3ht%Kt)XP+#4U4V<q)d2=7dxS7)9prLv>'3?''fu;S!^t+H(]G\7c$>ZmXL%+\2A-";"tkhMogbFcxe74ufL#8IhM";"eYfgY35YNW3Wg38C#Kjn4t";"M9yQd4CMDkHrRhHD"}
-         game.ReplicatedStorage.Events.PlayerChatted:FireServer(tbl[math.random(1, #tbl)], false, "Innocent", false, true)
-	end
- end)
-LocalPlayer.Status.Kills:GetPropertyChangedSignal("Value"):Connect(function(current)
-	if current == 0 then return end
-	if values.misc.chat["kill say type"].Dropdown == "rosense" then 
-		local tbl = {"femboy'd";"delete ROBLOX bro";"shippy#0001";"ur kd is 0-20 ?";"r u femboy?";"bloxsense.pub";"cry cry cry cry cry";"rosensed";"1 by rosense";"invaded tap";"bloxsense.lol";"sorry pls"}
-		game.ReplicatedStorage.Events.PlayerChatted:FireServer(tbl[math.random(1, #tbl)], false, "Innocent", false, true)
-	end    
- end)    
- LocalPlayer.Status.Kills:GetPropertyChangedSignal("Value"):Connect(function(current)
-	if current == 0 then return end
-	if values.misc.chat["kill say type"].Dropdown == "dead-inside" then 
-		local tbl = {"what are you feel?";"baby, what you wishin’ for?";"это 1 еблан😘";"Varechkaa#2007";"мой килл сей лучше твоего(";"you have 20501 fathers";"Maybe you should wish it more?";"The unfolding of the year";"get a life nn";"M.I.A";"get a friends nn";"touch my pussy";"will we still have learned it?";"ты сдох чел(";"give me bloxsense.pub";"hi semi";"1 by hui.ware";"1 by varya.ware";"backtacke'd";"1000-7";"zxc?";"wanna sex";"i feel bad";"u got neverbloxed";"1 by DeathCore";"you have 2012 fathers, deathcore said so"} 
-		game.ReplicatedStorage.Events.PlayerChatted:FireServer(tbl[math.random(1, #tbl)], false, "Innocent", false, true)
-	end    
-end)  
-LocalPlayer.Status.Kills:GetPropertyChangedSignal("Value"):Connect(function(current)
-	if current == 0 then return end
-	if values.misc.chat["kill say type"].Dropdown == "femware" then 
-		local tbl = {"Where's your femware, Exactly you dont have it.";"femware hits P";"1 by femware$";"What cheat bro?, ill bet you its not femware";"Bro thats a 1😭";"You just died to femware , fucking nn"}
-		game.ReplicatedStorage.Events.PlayerChatted:FireServer(tbl[math.random(1, #tbl)], false, "Innocent", false, true)
-	end    
-end) 
-LocalPlayer.Status.Kills:GetPropertyChangedSignal("Value"):Connect(function(current)
-	if current == 0 then return end
-	if values.misc.chat["kill say type"].Dropdown == "troll J." then 
-		local tbl = {"J. cant resolve invis?";"What's wrong, brother?";"'mhm stOp PaStiNg StOrmY😡' - J.#3780";"nice one J.";"obviously, im better :p";"J. try harder next time😘";"could of won if you were good";"get gud";"badddd";"you wish you were me";"J. you should quit this game if you play like that";"wanna-be tryhard?";"9/11 was such a tragedy, sad that you are too";"sorry, not sorry";"your with stupid";"never was you, never want to be you";"cry about it";"SISSY BOY";"jajajajajaja";"cry baby boy";"touch gras";"legit so mad LOL","mad cus you bad","you cryin all the time";"holy smokes your that bad??";"I cant believe what im seeing"}
-		game.ReplicatedStorage.Events.PlayerChatted:FireServer(tbl[math.random(1, #tbl)], false, "Innocent", false, true)
-	end    
-end) 
-LocalPlayer.Status.Kills:GetPropertyChangedSignal("Value"):Connect(function(current)
-	if current == 0 then return end
-	if values.misc.chat["kill say type"].Dropdown == "cris-paste" then 
-		local tbl = {"1 by cris paste !!32$@!#";"L";"1";"memz";"sex";"ben";"cris paste kill say better than urs";"try me";"wanna sex";"touch my pussy";"J";"J";"M";"E";"M";"Z";"J"}
-		game.ReplicatedStorage.Events.PlayerChatted:FireServer(tbl[math.random(1, #tbl)], false, "Innocent", false, true)
-	end    
-end)	
-LocalPlayer.Status.Kills:GetPropertyChangedSignal("Value"):Connect(function(current)
-	if current == 0 then return end
-	if values.misc.chat["kill say type"].Dropdown == "Vaderhaxx" then 
-		local tbl = {"1 by vaderhaxx";"$$ uff ya headz $$";"'God I love this cheat' - Invaded#5143";"Vaderhaxx winning";"'STOP IDOL TICK 😡' - Invaded#5143";"Vaderhaxx is the best";"Who.ru !?!? Vaderhaxx 1 :sad:";"Vaderhaxx | Supieror Anti-Aim Technology...";"Resolved by vaderhaxx";"Skill and hack issue ...";"Bro you no have cheats ? (70% visible WH)";"WHO>? VADERHAXX";"Our bullet redirection technology is superior to yours. Frankly; I'm surprised it took that long for you to figure it out. Our technology in general is far more advanced than you could ever comprehend...";"Beanbot on bottom... vaderhaxx on top tho 🔥 🔥";"'DuUUuUuUde!! I'm so good at this game' - Invaded#5143";"'Everytime I try to be friends with IntAHGher; he thinks I'm an Alan goon :sad:' - Invaded#5143";"I don't will show u anything";"Are u care";"Show ur brains";"Say who u on real life";"I'm not a cheater";"How many killsay? atleast 100..."}
-		game.ReplicatedStorage.Events.PlayerChatted:FireServer(tbl[math.random(1, #tbl)], false, "Innocent", false, true)
-	end    
-end)
-LocalPlayer.Status.Kills:GetPropertyChangedSignal("Value"):Connect(function(current)
-	if current == 0 then return end
-	if values.misc.chat["kill say type"].Dropdown == "MEMZ" then 
-		local tbl = {"You got trashed by the MEMZ.";"YOUR CHEAT HAS BEEN FUCKED BY THE MEMZ";"your krnl be rndestroyed";"rn Now you are going to die";"REST IN PISS, FOREVER MISS";"I WARNED YOU...";"HAHA N00B L2P G3T R3KT";"You failed at your 1337 h4x0r skillz";"YOU TRIED SO HARD AND GOT SO FAR, BUT IN THE END, YOUR CHEAT WAS STILL FUCKED!";"HACKER!rn ENJOY BAN!";"GET BETTER HAX NEXT TIME xD";"HAVE FUN TRYING TO RESTORE YOUR DATA :D";"|\/|3|\/|2";"BSOD INCOMING";"You are an idiot!rn HA HA HA HA HA HA HA";"#MakeMalwareGreatAgain";"SOMEBODY ONCE TOLD ME THE MEMZ ARE GONNA ROLL ME";"Why did you even tried to kill MEMZ? rn Your KRNL is fucked anyway.";"SecureBoot sucks.";"gr8 m8 i r8 8/8";"Have you tried turning it off and on again?";"<Insert Joel quote here>";"Greetings to all GAiA members!";"Well, hello there. I don't believe we've been properly introduced. I'm Bonzi!";"This is everything I want in my computer rn - danooct1 2016";"Uh, Club Penguin.Time to get banned! rn - danooct1 2016"}
-		game.ReplicatedStorage.Events.PlayerChatted:FireServer(tbl[math.random(1, #tbl)], false, "Innocent", false, true)
-	end    
-end)	
 RayIgnore.ChildAdded:Connect(function(obj)
     if obj.Name == "Fires" then
         obj.ChildAdded:Connect(function(fire)
@@ -10065,18 +9989,11 @@ if RayIgnore:FindFirstChild("Smokes") then
     end)
 end
 Camera.ChildAdded:Connect(function(obj)
-	while true do
-		wait()
-		if table.find(values.misc.client["gun modifiers"].Jumbobox, "ammo") then
-			Client.ammocount = 30
-			Client.primarystored = 30
-			Client.ammocount2 = 30
-			Client.secondarystored = 30
-		end
-	end
-end)
-Camera.ChildAdded:Connect(function(obj)
 	RunService.RenderStepped:Wait()
+	if table.find(values.misc.client["gun modifiers"].Jumbobox, "ammo") then
+		Client.ammocount = 1/0
+		Client.ammocount2 = 1/0
+	end
 	if obj.Name ~= "Arms" then return end
 	local Model
 	for i,v in pairs(obj:GetChildren()) do
@@ -10248,7 +10165,7 @@ Camera.ChildAdded:Connect(function(obj)
 	end
 end)
 Camera:GetPropertyChangedSignal("FieldOfView"):Connect(function(fov)
-	if not IsAlive(LocalPlayer) then return end
+	if LocalPlayer.Character == nil then return end
 	if fov == values.visuals.self["fov changer"].Slider then return end
 	if values.visuals.self["on scope"].Toggle or not LocalPlayer.Character:FindFirstChild("AIMING") then
 		Camera.FieldOfView = values.visuals.self["fov changer"].Slider
