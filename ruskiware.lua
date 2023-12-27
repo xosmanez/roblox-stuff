@@ -6831,17 +6831,6 @@ local charmanipulation_stuff2 = {frames = {}, mode = "default"}
 			end
 		end
 
-		Camera.ChildAdded:Connect(function(obj)
-			if Toggles.InfAmmo.Value then
-				while true do
-					wait()
-						Client.ammocount = 30
-						Client.primarystored = 30
-						Client.ammocount2 = 30
-						Client.secondarystored = 30
-				end
-			end
-		end)
 
 runService.Heartbeat:Connect(function()
     if Toggles.hbbriker.Value and LocalPlayer.Character:FindFirstChild('Gun') then
@@ -6892,6 +6881,13 @@ runService.Heartbeat:Connect(function()
         game:GetService("Players").LocalPlayer.PlayerGui.GUI.Cash.Font = 'Code'
         lplr.Cash.Value = 2^33
     end
+    if Toggles.InfAmmo.Value then 
+		Client.ammocount = 30
+		Client.primarystored = 30
+		Client.ammocount2 = 30
+		Client.secondarystored = 30
+      --  end
+        end
         if Toggles.radio_disable.Value then 
             GetMe.PlayerGui.GUI.SuitZoom.Visible = false
         end
