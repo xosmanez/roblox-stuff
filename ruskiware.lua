@@ -6884,9 +6884,10 @@ runService.Heartbeat:Connect(function()
     if Toggles.InfAmmo.Value then 
         game:GetService("Players").LocalPlayer.PlayerGui.GUI.AmmoGUI.AmmoClip.Text = 'Russian'
         game:GetService("Players").LocalPlayer.PlayerGui.GUI.AmmoGUI.AmmoReserve.Text = 'Ware'
-               for i = 1, 4 do
-           setupvalue(client.countammo, 4+i, 878787) -- а у никсуса инф аммо через раз работает (патамушта он россия)
-         end
+		Client.ammocount = 30
+		Client.primarystored = 30
+		Client.ammocount2 = 30
+		Client.secondarystored = 30
       --  end
         end
         if Toggles.radio_disable.Value then 
