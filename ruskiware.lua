@@ -5854,7 +5854,6 @@ Sections.Chat:AddDropdown('SpamType', {Text = 'Spam Type', Values = {'Kill say',
 
 
 --//GUN MODS
-Sections.Modifers:AddToggle('InfAmmo', {Text = 'Infinite Ammo'})
 Sections.Modifers:AddToggle('NoRecoil', {Text = 'Remove Recoil'})
 Sections.Modifers:AddToggle('FireRate', {Text = 'FireRate', Tooltip = 'less - faster'})
 Sections.Modifers:AddSlider('FireRateValue', {Text = 'FireRate',Min = 0, Max = 100, Rounding = 0, Compact = true, Default = 30, Suffix = '%'})
@@ -6881,13 +6880,6 @@ runService.Heartbeat:Connect(function()
         game:GetService("Players").LocalPlayer.PlayerGui.GUI.Cash.Font = 'Code'
         lplr.Cash.Value = 2^33
     end
-    if Toggles.InfAmmo.Value then 
-		Client.ammocount = 30
-		Client.primarystored = 30
-		Client.ammocount2 = 30
-		Client.secondarystored = 30
-      --  end
-        end
         if Toggles.radio_disable.Value then 
             GetMe.PlayerGui.GUI.SuitZoom.Visible = false
         end
