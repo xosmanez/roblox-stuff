@@ -8703,4 +8703,3 @@ openScript(scr5)
 	end)
 
 	--moony
-end)
