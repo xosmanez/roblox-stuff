@@ -412,7 +412,7 @@ local abs = math.abs
                 size = properties.Size or properties.size or dim2(0, 500, 0, 650)
             }
             
-            local animated_text = library:animation( cfg.name .. " | developer | uid 1") 
+            local animated_text = library:animation( cfg.name .. " | developer | " .. string.format("%s", os.date("%b, %d, %Y"))) 
 
             -- watermark 
                 local __holder = library:create("Frame", {
