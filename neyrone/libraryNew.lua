@@ -432,7 +432,7 @@ local abs = math.abs
                     Active = true, 
                     Draggable = true, 
                     BorderColor3 = Color3.fromRGB(0, 0, 0),
-                    Size = UDim2.new(0, #animated_text + 13, 0, 40),
+                    Size = UDim2.new(0, ((#animated_text / 2) * 2) + 13, 0, 40),
                     BackgroundColor3 = Color3.fromRGB(40, 40, 40)
                 })
                 
