@@ -1,3 +1,5 @@
+-- https://v3rm.net/threads/release-free-csgo-type-ui-library-cw.17955/
+-- https://github.com/i77lhm/vaderpaste
 local uis = game:GetService("UserInputService") 
 local players = game:GetService("Players") 
 local ws = game:GetService("Workspace")
@@ -52,7 +54,7 @@ local abs = math.abs
         keybind_path; 
         panel_open = false, 
 
-        directory = "inactivity",
+        directory = "neyrone",
         folders = {
             "/fonts",
             "/configs"
@@ -167,7 +169,7 @@ local abs = math.abs
     end 
 
     if not isfile(library.directory .. "/fonts/main.ttf") then 
-        writefile(library.directory .. "/fonts/main.ttf", game:HttpGet("https://github.com/f1nobe7650/other/raw/main/uis/font.ttf"))
+        writefile(library.directory .. "/fonts/main.ttf", game:HttpGet("https://github.com/xosmanez/roblox-stuff/raw/refs/heads/main/neyrone/font.ttf"))
     end 
     
     local tahoma = {
